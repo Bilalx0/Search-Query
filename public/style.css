@@ -1,0 +1,19 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  #searchForm {
+    margin-bottom: 20px;
+  }
+  #searchInput {
+    width: 70%;
+    padding: 10px;
+  }
+  button {
+    padding: 10px 20px;
+  }
+  .result {
+    margin-bottom: 20px;
+  }

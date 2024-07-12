@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Query</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Search Query</h1>
+    <form id="searchForm">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Enter your search query"
+      />
+      <button type="submit">Search</button>
+    </form>
+    <div id="results"></div>
+
+    <script>
+      document
+        .getElementById("searchForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+          const query = document.getElementById("searchInput").value;
+          fetch(`/search?q=${encodeURIComponent(query)}`)
+            .then((response) => response.json())
+            .then((data) => {
+              const resultsDiv = document.getElementById("results");
+              resultsDiv.innerHTML = "";
+              if (data.items && data.items.length > 0) {
+                data.items.forEach((item) => {
+                  resultsDiv.innerHTML += `
+                                        <div class="result">
+                                            <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
+                                            <p>${item.snippet}</p>
+                                        </div>
+                                    `;
+                });
+              } else {
+                resultsDiv.innerHTML = "<p>No results found</p>";
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              document.getElementById("results").innerHTML =
+                "<p>An error occurred while searching</p>";
+            });
+        });
+    </script>
+  </body>
+</html>

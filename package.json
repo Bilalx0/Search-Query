@@ -1,0 +1,14 @@
+{
+  "name": "custom-search-engine",
+  "version": "1.0.0",
+  "description": "A custom search engine using Google Custom Search API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^0.21.4",
+    "dotenv": "^10.0.0",
+    "express": "^4.19.2"
+  }
+}
